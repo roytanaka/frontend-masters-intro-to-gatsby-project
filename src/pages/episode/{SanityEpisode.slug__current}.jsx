@@ -25,16 +25,17 @@ export const query = graphql`
 
 const SanityEpisode = ({ data }) => {
   const { sanityEpisode: episode } = data;
+  const imgAsset = episode?.image?.asset;
 
   return (
     <Layout
       title={episode.title}
       description={episode.description}
-      image={`https://cdn.sanity.io/${episode.image.asset.path}`}
+      image={imgAsset && `https://cdn.sanity.io/${imgAsset.path}`}
       path={`https://www.learnwithjason.dev/${episode.slug.current}`}
     >
       <GatsbyImage
-        image={episode.image.asset.gatsbyImageData}
+        image={imgAsset && imgAsset.gatsbyImageData}
         alt={episode.title}
       />
       <h1>{episode.title}</h1>
